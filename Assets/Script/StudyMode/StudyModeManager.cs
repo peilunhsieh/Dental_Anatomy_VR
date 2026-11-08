@@ -23,6 +23,8 @@ public class StudyModeManager : MonoBehaviour
     public GameObject toothSelectionRoot;
     [Tooltip("The Back to teeth button, shown only while inspecting a tooth.")]
     public GameObject backToTeethButton;
+   [Tooltip("Panel shown only while inspecting a tooth, such as the filters and info text.")]
+   public GameObject toothDetailsPanel;
 
     [Tooltip("Fit the spawned instance inside the shared viewer without changing the source prefab.")]
     public bool fitToSharedViewer = true;
@@ -127,6 +129,8 @@ public class StudyModeManager : MonoBehaviour
         }
         if (backToTeethButton != null)
             backToTeethButton.SetActive(IsViewingTooth);
+        if (toothDetailsPanel != null)
+           toothDetailsPanel.SetActive(IsViewingTooth);
     }
 
     private void DestroyCurrentTooth()

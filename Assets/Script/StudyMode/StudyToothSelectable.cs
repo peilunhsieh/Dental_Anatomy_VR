@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.EventSystems;
 
-public class StudyToothSelectable : MonoBehaviour
+public class StudyToothSelectable : MonoBehaviour, IPointerClickHandler
 {
     public StudyModeManager manager;
     public string toothId;
@@ -78,4 +79,6 @@ public class StudyToothSelectable : MonoBehaviour
             outline.enabled = visible;
         }
     }
+
+    public void OnPointerClick(PointerEventData eventData) => Select();
 }
