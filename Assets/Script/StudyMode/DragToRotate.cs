@@ -31,6 +31,9 @@ public class DragToRotate : MonoBehaviour
     private bool snapping;
     private Quaternion snapTargetLocal;
 
+    // True while the tooth is being dragged or is easing into a snap.
+    public bool IsMoving => controller != null || snapping;
+
     private void Awake()
     {
         grab = GetComponent<XRGrabInteractable>();

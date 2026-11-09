@@ -32,6 +32,7 @@ public class StudyModeManager : MonoBehaviour
     public Vector3 toothViewCenter = new Vector3(0f, -.12f, -.1f);
 
     public bool IsViewingTooth => currentTooth != null;
+    public GameObject CurrentTooth => currentTooth;
 
     private GameObject currentTooth;
     private void Start()
