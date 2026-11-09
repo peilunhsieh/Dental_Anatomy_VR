@@ -3217,6 +3217,8 @@ MonoBehaviour:
   sensitivity: 2
   allowPitch: 1
   rotateAroundVisualCenter: 1
+  snapToFacesOnRelease: 1
+  snapSpeed: 10
 --- !u!1 &5003529259581223810
 GameObject:
   m_ObjectHideFlags: 0
