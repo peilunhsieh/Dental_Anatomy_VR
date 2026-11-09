@@ -3,7 +3,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 // Rotates this object by "dragging" it while grabbed, so the side
 // facing the user follows the ray, like spinning a globe.
-// Built-in position and rotation tracking are turned off.
 [RequireComponent(typeof(XRGrabInteractable))]
 public class DragToRotate : MonoBehaviour
 {
@@ -11,10 +10,13 @@ public class DragToRotate : MonoBehaviour
     public float sensitivity = 2f;
     [Tooltip("Allow tilting up and down as well as spinning left and right.")]
     public bool allowPitch = true;
+    [Tooltip("Rotate around the middle of the visible model instead of its pivot.")]
+    public bool rotateAroundVisualCenter = true;
 
     private XRGrabInteractable grab;
     private Transform controller;
     private Vector3 lastDirection;
+    private Vector3 pivot;
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class DragToRotate : MonoBehaviour
     {
         controller = args.interactorObject.transform;
         lastDirection = controller.forward;
+        pivot = rotateAroundVisualCenter ? GetVisualCenter() : transform.position;
     }
 
     private void OnRelease(SelectExitEventArgs args) => controller = null;
@@ -53,7 +56,6 @@ public class DragToRotate : MonoBehaviour
         Vector3 up = Vector3.up;
         Vector3 right = Camera.main != null ? Camera.main.transform.right : Vector3.right;
 
-        // How far the ray moved left/right and up/down since last frame.
         float yaw = Vector3.SignedAngle(
             Vector3.ProjectOnPlane(lastDirection, up),
             Vector3.ProjectOnPlane(direction, up), up);
@@ -64,9 +66,22 @@ public class DragToRotate : MonoBehaviour
             : 0f;
 
         // Rotate opposite to the hand, so the near surface follows the ray.
-        transform.Rotate(up, -yaw * sensitivity, Space.World);
-        transform.Rotate(right, -pitch * sensitivity, Space.World);
+        transform.RotateAround(pivot, up, -yaw * sensitivity);
+        transform.RotateAround(pivot, right, -pitch * sensitivity);
 
         lastDirection = direction;
+    }
+
+    private Vector3 GetVisualCenter()
+    {
+        bool found = false;
+        Bounds bounds = default;
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if (!r.enabled) continue;
+            if (!found) { bounds = r.bounds; found = true; }
+            else bounds.Encapsulate(r.bounds);
+        }
+        return found ? bounds.center : transform.position;
     }
 }
