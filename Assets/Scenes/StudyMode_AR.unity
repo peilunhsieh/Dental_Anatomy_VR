@@ -428,7 +428,8 @@ MonoBehaviour:
   followHead: 0
   positionSmooth: 8
   rotationSmooth: 8
-  recenterAction: {fileID: 0}
+  recenterAction: {fileID: 4650242129591811235, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
 --- !u!1 &126362855
 GameObject:
   m_ObjectHideFlags: 0
