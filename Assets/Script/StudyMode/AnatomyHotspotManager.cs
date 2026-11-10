@@ -20,6 +20,13 @@ public class AnatomyHotspotManager : MonoBehaviour
     [Tooltip("Opacity of other visible anatomy regions while one region is highlighted. 0 is invisible; 1 is opaque.")]
     [Range(0.05f, 1f)] public float unselectedOpacity = 0.2f;
 
+    [Header("Views")]
+    [Tooltip("Opacity of pointable regions while nothing is being pointed at.")]
+    [Range(0.05f, 1f)] public float hintOpacity = 0.35f;
+
+    private ToothView currentView = ToothView.None;
+    public ToothView CurrentView => currentView;
+
     private readonly List<AnatomyRegion> hoveredRegions = new List<AnatomyRegion>();
     private AnatomyRegion currentRegion;
 
@@ -80,12 +87,24 @@ public class AnatomyHotspotManager : MonoBehaviour
         }
     }
 
+    public bool IsRegionEnabled(AnatomyRegion region)
+    {
+        return IsTypeEnabled(region.structureType) && (region.visibleInViews & currentView) != 0;
+    }
+
+    public void SetCurrentView(ToothView view)
+    {
+        if (view == currentView) return;
+        currentView = view;
+        ApplyStructureFilters();
+    }
+
     public void ApplyStructureFilters()
     {
         foreach (AnatomyRegion region in FindObjectsOfType<AnatomyRegion>(true))
         {
             if (region.gameObject.scene == gameObject.scene)
-                region.SetInteractableByFilter(IsTypeEnabled(region.structureType));
+                region.SetInteractableByFilter(IsRegionEnabled(region));
         }
         RefreshInfo();
     }
@@ -131,7 +150,9 @@ public class AnatomyHotspotManager : MonoBehaviour
 
     internal void ApplyRegionPresentation(AnatomyRegion region)
     {
-        region.SetFocusPresentation(isActiveAndEnabled ? currentRegion : null, unselectedOpacity);
+        AnatomyRegion focused = isActiveAndEnabled ? currentRegion : null;
+        float opacity = focused == null ? hintOpacity : unselectedOpacity;
+        region.SetFocusPresentation(focused, opacity, true);
     }
 
     private void OnShowInfoPressed(InputAction.CallbackContext context) => RefreshInfo();

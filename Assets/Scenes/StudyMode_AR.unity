@@ -1073,7 +1073,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &392049984
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,7 +2263,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &712454506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,9 +3100,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   label: {fileID: 0}
-  format: 'Viewing: {0}'
-  minFacing: 0.5
-  switchMargin: 0.05
 --- !u!1 &1085102918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7836401610233535021, guid: b322d8da4c94e5c459354f6e26476c5a,
@@ -3243,7 +3240,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &1197994477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5260,7 +5257,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &6700000007
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,7 +5585,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &6700000107
 GameObject:
   m_ObjectHideFlags: 0
@@ -5816,7 +5813,7 @@ PrefabInstance:
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
       propertyPath: showPits
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
@@ -5826,22 +5823,22 @@ PrefabInstance:
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
       propertyPath: showCusps
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
       propertyPath: showFossae
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
       propertyPath: showRidges
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
       propertyPath: showGrooves
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}

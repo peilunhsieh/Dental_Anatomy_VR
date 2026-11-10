@@ -222,6 +222,7 @@ MonoBehaviour:
   description: Two short grooves extending from the mesial pit toward the mesiobuccal
     and mesiolingual line angles.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 5457517369868978849}
   hotspotManager: {fileID: 0}
 --- !u!1 &1178288150186776594
@@ -297,6 +298,7 @@ MonoBehaviour:
 
 '
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 1245689479859451235}
   hotspotManager: {fileID: 0}
 --- !u!1 &1178353194559157482
@@ -370,6 +372,7 @@ MonoBehaviour:
   structureName: Distobuccal Triangular Ridge
   description: 
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 429819811923630087}
   hotspotManager: {fileID: 0}
 --- !u!1 &1245689479859451235
@@ -526,6 +529,7 @@ MonoBehaviour:
   structureName: Mesiobuccal Triangular Ridge
   description: 
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 3817948740966667255}
   hotspotManager: {fileID: 0}
 --- !u!1 &1358904848863489649
@@ -918,7 +922,7 @@ GameObject:
   - component: {fileID: 2591719416741998624}
   - component: {fileID: 2842490334921214872}
   m_Layer: 0
-  m_Name: Cusp of Carabell
+  m_Name: Cusp of Carabelli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,12 +978,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2920f406f20cc0e439f86f2be6974578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structureName: Cusp of Carabell
+  structureName: Cusp of Carabelli
   description: 'A nonfunctional accessory cusp on the lingual surface of the ML cusp.
     When not fully developed, it may appear as a pit, groove, or bulbous elevation.
 
 '
   structureType: 1
+  visibleInViews: 30
   highlightObject: {fileID: 4242567714020257223}
   hotspotManager: {fileID: 0}
 --- !u!1 &1590253615936538341
@@ -1087,6 +1092,7 @@ MonoBehaviour:
 
 '
   structureType: 3
+  visibleInViews: 0
   highlightObject: {fileID: 1893003300976449686}
   hotspotManager: {fileID: 0}
 --- !u!1 &1726657718134530048
@@ -1161,6 +1167,7 @@ MonoBehaviour:
   description: ' The largest fossa, located near the center of the occlusal surface
     and mesial to the oblique ridge.'
   structureType: 3
+  visibleInViews: 0
   highlightObject: {fileID: 8703420354220905766}
   hotspotManager: {fileID: 0}
 --- !u!1 &1794285459600647141
@@ -1236,6 +1243,7 @@ MonoBehaviour:
     the central pit between the mesiobuccal and distobuccal cusps, and may terminate
     in a buccal pit on the buccal surface.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 8296368267365799253}
   hotspotManager: {fileID: 0}
 --- !u!1 &1893003300976449686
@@ -1393,6 +1401,7 @@ MonoBehaviour:
   description: A relatively sharp cusp and the second largest. It has four cusp ridges
     and four inclined planes.
   structureType: 1
+  visibleInViews: 29
   highlightObject: {fileID: 8897421435665777365}
   hotspotManager: {fileID: 0}
 --- !u!1 &2014379387451884143
@@ -1633,6 +1642,7 @@ MonoBehaviour:
   description: Extends from the mesial pit to the central pit through the central
     fossa.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 4861741661303798606}
   hotspotManager: {fileID: 0}
 --- !u!1 &2323604282377163890
@@ -2088,6 +2098,7 @@ MonoBehaviour:
   description: A central depression where key occlusal grooves meet. Use it as the
     main landmark for reading the groove pattern
   structureType: 0
+  visibleInViews: 0
   highlightObject: {fileID: 8799116319772193658}
   hotspotManager: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
     type: 3}
@@ -2360,6 +2371,7 @@ MonoBehaviour:
   description: ' A shallow groove that crosses the oblique ridge and connects the
     central and distal fossae.'
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 2014379387451884143}
   hotspotManager: {fileID: 0}
 --- !u!1 &3817948740966667255
@@ -2494,6 +2506,7 @@ MonoBehaviour:
   description: A small distal-side depression near the distal triangular fossa, useful
     for identifying the distal side of the tooth
   structureType: 0
+  visibleInViews: 0
   highlightObject: {fileID: 1488039408126947452}
   hotspotManager: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
     type: 3}
@@ -2765,6 +2778,7 @@ MonoBehaviour:
   structureName: Mesiolingual Triangular Ridge
   description: 
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 2210909833585258833}
   hotspotManager: {fileID: 0}
 --- !u!1 &4772550787676149190
@@ -2840,6 +2854,7 @@ MonoBehaviour:
     Separates occlusal margin into two unequal portions. It is more distal to midline.
     May terminate into a Lingual pit. '
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 2941386285080980896}
   hotspotManager: {fileID: 0}
 --- !u!1 &4793241050357790458
@@ -2913,6 +2928,7 @@ MonoBehaviour:
   structureName: Mesiolingual Groove
   description: " located between the ML cusp and the Cusp of Carabelli.\r"
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 4897164910479808578}
   hotspotManager: {fileID: 0}
 --- !u!1 &4861741661303798606
@@ -3136,6 +3152,7 @@ GameObject:
   - component: {fileID: 1500440670284759030}
   - component: {fileID: 4369424598840333875}
   - component: {fileID: -7337948133437928510}
+  - component: {fileID: 1057496098428384377}
   m_Layer: 8
   m_Name: Maxillary_right_1st_molar
   m_TagString: Untagged
@@ -3378,6 +3395,21 @@ MonoBehaviour:
   rotateAroundVisualCenter: 1
   snapToFacesOnRelease: 1
   snapSpeed: 6
+--- !u!114 &1057496098428384377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914032092275200630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf20e7d7d7514f0abd6d90474039ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  markers: {fileID: 7258491644205354638}
+  minFacing: 0.5
+  switchMargin: 0.05
 --- !u!1 &5003529259581223810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,6 +3482,7 @@ MonoBehaviour:
   description: Two short grooves extending from the distal pit toward the distobuccal
     and distolingual line angles.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 6762072171919822426}
   hotspotManager: {fileID: 0}
 --- !u!1 &5069362919178133510
@@ -3640,6 +3673,7 @@ MonoBehaviour:
   description: ' A small triangular depression located just distal to the mesial
     marginal ridge.'
   structureType: 3
+  visibleInViews: 0
   highlightObject: {fileID: 6351445565977343964}
   hotspotManager: {fileID: 0}
 --- !u!1 &5457517369868978849
@@ -3880,6 +3914,7 @@ MonoBehaviour:
   description: The sharpest and third-largest cusp. Its triangular ridge contributes
     to the oblique ridge.
   structureType: 1
+  visibleInViews: 25
   highlightObject: {fileID: 2323604282377163890}
   hotspotManager: {fileID: 0}
 --- !u!1 &6020305243368334240
@@ -3957,6 +3992,7 @@ MonoBehaviour:
 
 '
   structureType: 1
+  visibleInViews: 26
   highlightObject: {fileID: 2499736190751494846}
   hotspotManager: {fileID: 0}
 --- !u!1 &6044382012187896360
@@ -4030,6 +4066,7 @@ MonoBehaviour:
   structureName: Mesial marginal groove
   description: A groove crossing the mesial marginal ridge.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 2595907009632010319}
   hotspotManager: {fileID: 0}
 --- !u!1 &6342969512225471901
@@ -4103,6 +4140,7 @@ MonoBehaviour:
   structureName: Lingual pit
   description: A small depression on the lingual surface of the tooth.
   structureType: 0
+  visibleInViews: 0
   highlightObject: {fileID: 5467488622465257870}
   hotspotManager: {fileID: 0}
 --- !u!1 &6351445565977343964
@@ -4342,6 +4380,7 @@ MonoBehaviour:
   structureName: Mesial contact area
   description: The contact area on the mesial surface of the tooth.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 2712471372805874853}
   hotspotManager: {fileID: 0}
 --- !u!1 &7601222457427577059
@@ -4420,6 +4459,7 @@ MonoBehaviour:
 
     2. the distal triangular ridge of the Mesiolingual cusp.'
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 3139764547944008687}
   hotspotManager: {fileID: 0}
 --- !u!1 &7658214721477735535
@@ -4475,6 +4515,7 @@ MonoBehaviour:
 
     2. the mesial triangular ridge of the Mesiolingual cusp'
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 1395707291378653145}
   hotspotManager: {fileID: 0}
 --- !u!1 &7844355319850654802
@@ -4679,6 +4720,7 @@ MonoBehaviour:
   description: A small mesial-side depression near the mesial triangular fossa and
     mesial marginal ridge
   structureType: 0
+  visibleInViews: 0
   highlightObject: {fileID: 8622896169754292009}
   hotspotManager: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
     type: 3}
@@ -4753,6 +4795,7 @@ MonoBehaviour:
   structureName: Mesiolingual Triangular Ridge
   description: 
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 7997634002838278501}
   hotspotManager: {fileID: 0}
 --- !u!1 &8269452151774060341
@@ -4826,6 +4869,7 @@ MonoBehaviour:
   structureName: Distolingual Cusp
   description: The smallest of the four functional cusps.
   structureType: 1
+  visibleInViews: 30
   highlightObject: {fileID: 9141000136045123792}
   hotspotManager: {fileID: 0}
 --- !u!1 &8296368267365799253
@@ -5052,6 +5096,7 @@ MonoBehaviour:
   structureName: Disto-oblique groove
   description: A groove on the distal portion of the occlusal surface.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 1358904848863489649}
   hotspotManager: {fileID: 0}
 --- !u!1 &8463878640168265923
@@ -5125,6 +5170,7 @@ MonoBehaviour:
   structureName: Cervical Line
   description: The junction between the crown and root of the tooth.
   structureType: 4
+  visibleInViews: 0
   highlightObject: {fileID: 5092137000152650791}
   hotspotManager: {fileID: 0}
 --- !u!1 &8622896169754292009
@@ -5577,6 +5623,7 @@ MonoBehaviour:
   description: ' The elevated border forming the mesial boundary of the occlusal
     surface.'
   structureType: 2
+  visibleInViews: 0
   highlightObject: {fileID: 1386706128599349296}
   hotspotManager: {fileID: 0}
 --- !u!1 &9019228568426262606
@@ -5651,6 +5698,7 @@ MonoBehaviour:
   description: A small triangular depression located just mesial to the distal marginal
     ridge.
   structureType: 3
+  visibleInViews: 0
   highlightObject: {fileID: 4289425406488760522}
   hotspotManager: {fileID: 0}
 --- !u!1 &9091775224155101633
@@ -5679,7 +5727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9091775224155101633}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7301723, y: -0.68238986, z: -0.01274556, w: 0.032094605}
+  m_LocalRotation: {x: 0.7827499, y: -0.6195267, z: 0.00676177, w: 0.058682293}
   m_LocalPosition: {x: -0.14877681, y: -1.9315116, z: -0.5422186}
   m_LocalScale: {x: 0.10036662, y: 0.100366645, z: 0.100366645}
   m_ConstrainProportionsScale: 0
