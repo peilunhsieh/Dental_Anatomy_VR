@@ -1092,7 +1092,7 @@ MonoBehaviour:
 
 '
   structureType: 3
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 1893003300976449686}
   hotspotManager: {fileID: 0}
 --- !u!1 &1726657718134530048
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   description: ' The largest fossa, located near the center of the occlusal surface
     and mesial to the oblique ridge.'
   structureType: 3
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 8703420354220905766}
   hotspotManager: {fileID: 0}
 --- !u!1 &1794285459600647141
@@ -2098,7 +2098,7 @@ MonoBehaviour:
   description: A central depression where key occlusal grooves meet. Use it as the
     main landmark for reading the groove pattern
   structureType: 0
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 8799116319772193658}
   hotspotManager: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
     type: 3}
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   description: A small distal-side depression near the distal triangular fossa, useful
     for identifying the distal side of the tooth
   structureType: 0
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 1488039408126947452}
   hotspotManager: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
     type: 3}
@@ -4720,7 +4720,7 @@ MonoBehaviour:
   description: A small mesial-side depression near the mesial triangular fossa and
     mesial marginal ridge
   structureType: 0
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 8622896169754292009}
   hotspotManager: {fileID: 4794181031578186356, guid: 31df5ebca398c0b4dbc40119d5bf428e,
     type: 3}
