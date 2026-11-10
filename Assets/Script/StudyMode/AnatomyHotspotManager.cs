@@ -29,6 +29,7 @@ public class AnatomyHotspotManager : MonoBehaviour
 
     private readonly List<AnatomyRegion> hoveredRegions = new List<AnatomyRegion>();
     private AnatomyRegion currentRegion;
+    public AnatomyRegion CurrentRegion => currentRegion;
 
     private void Awake() => FindInfoPanel();
 
