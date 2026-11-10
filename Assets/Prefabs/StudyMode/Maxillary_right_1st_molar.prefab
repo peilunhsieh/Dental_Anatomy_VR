@@ -298,7 +298,7 @@ MonoBehaviour:
 
 '
   structureType: 2
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 1245689479859451235}
   hotspotManager: {fileID: 0}
 --- !u!1 &1178353194559157482
@@ -1243,7 +1243,7 @@ MonoBehaviour:
     the central pit between the mesiobuccal and distobuccal cusps, and may terminate
     in a buccal pit on the buccal surface.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 17
   highlightObject: {fileID: 8296368267365799253}
   hotspotManager: {fileID: 0}
 --- !u!1 &1893003300976449686
@@ -1642,7 +1642,7 @@ MonoBehaviour:
   description: Extends from the mesial pit to the central pit through the central
     fossa.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 4861741661303798606}
   hotspotManager: {fileID: 0}
 --- !u!1 &2323604282377163890
@@ -2854,7 +2854,7 @@ MonoBehaviour:
     Separates occlusal margin into two unequal portions. It is more distal to midline.
     May terminate into a Lingual pit. '
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 18
   highlightObject: {fileID: 2941386285080980896}
   hotspotManager: {fileID: 0}
 --- !u!1 &4793241050357790458
@@ -2928,7 +2928,7 @@ MonoBehaviour:
   structureName: Mesiolingual Groove
   description: " located between the ML cusp and the Cusp of Carabelli.\r"
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 6
   highlightObject: {fileID: 4897164910479808578}
   hotspotManager: {fileID: 0}
 --- !u!1 &4861741661303798606
@@ -4140,7 +4140,7 @@ MonoBehaviour:
   structureName: Lingual pit
   description: A small depression on the lingual surface of the tooth.
   structureType: 0
-  visibleInViews: 0
+  visibleInViews: 2
   highlightObject: {fileID: 5467488622465257870}
   hotspotManager: {fileID: 0}
 --- !u!1 &6351445565977343964
@@ -4459,7 +4459,7 @@ MonoBehaviour:
 
     2. the distal triangular ridge of the Mesiolingual cusp.'
   structureType: 2
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 3139764547944008687}
   hotspotManager: {fileID: 0}
 --- !u!1 &7658214721477735535
@@ -4515,7 +4515,7 @@ MonoBehaviour:
 
     2. the mesial triangular ridge of the Mesiolingual cusp'
   structureType: 2
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 1395707291378653145}
   hotspotManager: {fileID: 0}
 --- !u!1 &7844355319850654802
@@ -5096,7 +5096,7 @@ MonoBehaviour:
   structureName: Disto-oblique groove
   description: A groove on the distal portion of the occlusal surface.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 1358904848863489649}
   hotspotManager: {fileID: 0}
 --- !u!1 &8463878640168265923
@@ -5170,7 +5170,7 @@ MonoBehaviour:
   structureName: Cervical Line
   description: The junction between the crown and root of the tooth.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 1
   highlightObject: {fileID: 5092137000152650791}
   hotspotManager: {fileID: 0}
 --- !u!1 &8622896169754292009
@@ -5623,7 +5623,7 @@ MonoBehaviour:
   description: ' The elevated border forming the mesial boundary of the occlusal
     surface.'
   structureType: 2
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 1386706128599349296}
   hotspotManager: {fileID: 0}
 --- !u!1 &9019228568426262606

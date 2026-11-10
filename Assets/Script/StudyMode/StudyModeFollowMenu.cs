@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 public class StudyModeFollowMenu : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class StudyModeFollowMenu : MonoBehaviour
     public Transform head;
 
     [Header("Placement")]
-    public float distanceFromHead = 1.6f;
+    public float distanceFromHead = 1.2f;
     public float heightOffset = -0.05f;
 
     [Header("Follow")]
@@ -18,8 +20,10 @@ public class StudyModeFollowMenu : MonoBehaviour
     public float rotationSmooth = 8f;
 
     [Header("Recenter Input")]
-    [Tooltip("Button that brings the menu back in front of the user.")]
+    [Tooltip("Optional button that brings the menu back in front of the user.")]
     public InputActionReference recenterAction;
+
+    private static readonly List<XRInputSubsystem> inputSubsystems = new List<XRInputSubsystem>();
 
     private void OnEnable()
     {
@@ -34,6 +38,7 @@ public class StudyModeFollowMenu : MonoBehaviour
     {
         if (recenterAction != null && recenterAction.action != null)
             recenterAction.action.performed -= OnRecenter;
+        ListenForSystemRecenter(false);
     }
 
     private void OnRecenter(InputAction.CallbackContext context) => SnapToHead();
@@ -45,9 +50,14 @@ public class StudyModeFollowMenu : MonoBehaviour
             head = Camera.main.transform;
         }
 
-        // Wait one frame so headset tracking has a real head position.
-        yield return null;
+        // Wait until the headset reports a real head position (not the floor-level
+        // origin it reports while XR starts up), or give up after 2 seconds.
+        float giveUpTime = Time.time + 2f;
+        while (head != null && head.localPosition.sqrMagnitude < 0.01f && Time.time < giveUpTime)
+            yield return null;
+
         SnapToHead();
+        ListenForSystemRecenter(true);
     }
 
     private void LateUpdate()
@@ -94,5 +104,28 @@ public class StudyModeFollowMenu : MonoBehaviour
 
         transform.rotation =
             Quaternion.LookRotation(forward, Vector3.up);
+    }
+
+    // Holding the Meta button resets the view; move the panels back in front of the user.
+    private void ListenForSystemRecenter(bool listen)
+    {
+        SubsystemManager.GetSubsystems(inputSubsystems);
+        foreach (XRInputSubsystem subsystem in inputSubsystems)
+        {
+            subsystem.trackingOriginUpdated -= OnTrackingOriginUpdated;
+            if (listen) subsystem.trackingOriginUpdated += OnTrackingOriginUpdated;
+        }
+    }
+
+    private void OnTrackingOriginUpdated(XRInputSubsystem subsystem)
+    {
+        if (isActiveAndEnabled) StartCoroutine(SnapNextFrame());
+    }
+
+    // The head position updates a frame after the recenter, so wait before placing.
+    private IEnumerator SnapNextFrame()
+    {
+        yield return null;
+        SnapToHead();
     }
 }
