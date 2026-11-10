@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 // One anatomy region on a tooth. Hover comes from UI pointer events,
 // so the region's collider can also be used to grab the whole tooth.
-public class AnatomyHotspot : AnatomyRegion, IPointerEnterHandler, IPointerExitHandler
+public class AnatomyHotspot : AnatomyRegion, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Highlight")]
     public GameObject highlightObject;
@@ -38,5 +38,12 @@ public class AnatomyHotspot : AnatomyRegion, IPointerEnterHandler, IPointerExitH
     public void OnPointerExit(PointerEventData eventData)
     {
         if (pointers.Remove(eventData.pointerId) && pointers.Count == 0) ExitHover(this);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AnatomyHotspotManager manager = GetManager();
+        if (manager != null)
+            manager.ToggleSelectedRegion(this, eventData.pointerCurrentRaycast.worldPosition);
     }
 }
