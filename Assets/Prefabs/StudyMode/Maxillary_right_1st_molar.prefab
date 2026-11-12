@@ -222,7 +222,7 @@ MonoBehaviour:
   description: Two short grooves extending from the mesial pit toward the mesiobuccal
     and mesiolingual line angles.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 20
   highlightObject: {fileID: 5457517369868978849}
   hotspotManager: {fileID: 0}
 --- !u!1 &1178288150186776594
@@ -298,7 +298,7 @@ MonoBehaviour:
 
 '
   structureType: 2
-  visibleInViews: 16
+  visibleInViews: 24
   highlightObject: {fileID: 1245689479859451235}
   hotspotManager: {fileID: 0}
 --- !u!1 &1178353194559157482
@@ -1092,7 +1092,7 @@ MonoBehaviour:
 
 '
   structureType: 3
-  visibleInViews: 16
+  visibleInViews: 24
   highlightObject: {fileID: 1893003300976449686}
   hotspotManager: {fileID: 0}
 --- !u!1 &1726657718134530048
@@ -1273,7 +1273,7 @@ Transform:
   m_GameObject: {fileID: 1893003300976449686}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.04, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2371,7 +2371,7 @@ MonoBehaviour:
   description: ' A shallow groove that crosses the oblique ridge and connects the
     central and distal fossae.'
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 16
   highlightObject: {fileID: 2014379387451884143}
   hotspotManager: {fileID: 0}
 --- !u!1 &3817948740966667255
@@ -3482,7 +3482,7 @@ MonoBehaviour:
   description: Two short grooves extending from the distal pit toward the distobuccal
     and distolingual line angles.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 24
   highlightObject: {fileID: 6762072171919822426}
   hotspotManager: {fileID: 0}
 --- !u!1 &5069362919178133510
@@ -3673,7 +3673,7 @@ MonoBehaviour:
   description: ' A small triangular depression located just distal to the mesial
     marginal ridge.'
   structureType: 3
-  visibleInViews: 0
+  visibleInViews: 20
   highlightObject: {fileID: 6351445565977343964}
   hotspotManager: {fileID: 0}
 --- !u!1 &5457517369868978849
@@ -4066,7 +4066,7 @@ MonoBehaviour:
   structureName: Mesial marginal groove
   description: A groove crossing the mesial marginal ridge.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 20
   highlightObject: {fileID: 2595907009632010319}
   hotspotManager: {fileID: 0}
 --- !u!1 &6342969512225471901
@@ -4170,7 +4170,7 @@ Transform:
   m_GameObject: {fileID: 6351445565977343964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4380,7 +4380,7 @@ MonoBehaviour:
   structureName: Mesial contact area
   description: The contact area on the mesial surface of the tooth.
   structureType: 4
-  visibleInViews: 0
+  visibleInViews: 20
   highlightObject: {fileID: 2712471372805874853}
   hotspotManager: {fileID: 0}
 --- !u!1 &7601222457427577059
@@ -5170,7 +5170,7 @@ MonoBehaviour:
   structureName: Cervical Line
   description: The junction between the crown and root of the tooth.
   structureType: 4
-  visibleInViews: 1
+  visibleInViews: -1
   highlightObject: {fileID: 5092137000152650791}
   hotspotManager: {fileID: 0}
 --- !u!1 &8622896169754292009
@@ -5306,7 +5306,7 @@ Transform:
   m_GameObject: {fileID: 8703420354220905766}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.09, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5623,7 +5623,7 @@ MonoBehaviour:
   description: ' The elevated border forming the mesial boundary of the occlusal
     surface.'
   structureType: 2
-  visibleInViews: 16
+  visibleInViews: 20
   highlightObject: {fileID: 1386706128599349296}
   hotspotManager: {fileID: 0}
 --- !u!1 &9019228568426262606
@@ -5698,7 +5698,7 @@ MonoBehaviour:
   description: A small triangular depression located just mesial to the distal marginal
     ridge.
   structureType: 3
-  visibleInViews: 0
+  visibleInViews: 24
   highlightObject: {fileID: 4289425406488760522}
   hotspotManager: {fileID: 0}
 --- !u!1 &9091775224155101633
