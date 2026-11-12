@@ -49,10 +49,10 @@ public class TutorialManager : MonoBehaviour
         hasGrabbed = false;
 
         coverToggle.gameObject.SetActive(true);
-        coverToggle.SetIsOnWithoutNotify(true);
+        coverToggle.SetIsOnWithoutNotify(false);   // was true: starts unticked now
         coverToggle.interactable = true;
 
-        coverObject.SetActive(true);
+        if (coverObject != null) coverObject.SetActive(false);
         practiceCube.SetActive(false);
 
         // Your fixed demonstration controllers.
@@ -66,8 +66,8 @@ public class TutorialManager : MonoBehaviour
             "Hold the controllers naturally. Palms up. " +
             "Your index finger rests on the front trigger, your middle finger " +
             "rests on the side grip, and your thumb rests on the joystick.\n\n" +
-            "When ready, point at \"Show protective cover\" and press the " +
-            "index trigger to turn it off.";
+            "When ready, point at \"Show practice cube\" and press the " +
+            "index trigger to turn it on.";
     }
 
     private void OnDestroy()
@@ -95,7 +95,7 @@ public class TutorialManager : MonoBehaviour
         //if (rightController != null)
         //    rightController.SendHapticImpulse(0.35f, 0.08f);
 
-        coverObject.SetActive(false);
+        if (hasRevealed) coverObject.SetActive(false);
         practiceCube.SetActive(true);
 
         // Leave the Toggle visible in its OFF state,
@@ -170,6 +170,6 @@ public class TutorialManager : MonoBehaviour
 
     private void EnterStudyMode()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StudyMode_1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StudyMode_AR");
     }
 }

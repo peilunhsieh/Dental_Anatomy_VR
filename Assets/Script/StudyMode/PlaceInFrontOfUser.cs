@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 
-public class StudyModeFollowMenu : MonoBehaviour
+public class PlaceInFrontOfUser : MonoBehaviour
 {
     [Header("Target")]
     public Transform head;

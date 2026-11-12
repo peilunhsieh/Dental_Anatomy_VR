@@ -9,12 +9,12 @@ public class SettingsMenuActions : MonoBehaviour
     public GameObject backButton;
     public string mainMenuScene = "MainMenu";
 
-    private StudyModeFollowMenu followMenu;
+    private PlaceInFrontOfUser placement;
 
     private void OnEnable()
     {
-        if (followMenu == null) followMenu = FindObjectOfType<StudyModeFollowMenu>();
-        if (recenterButton != null) recenterButton.SetActive(followMenu != null);
+        if (placement == null) placement = FindObjectOfType<PlaceInFrontOfUser>();
+        if (recenterButton != null) recenterButton.SetActive(placement != null);
         if (backButton != null) backButton.SetActive(SceneManager.GetActiveScene().name != mainMenuScene);
     }
 
@@ -25,7 +25,7 @@ public class SettingsMenuActions : MonoBehaviour
 
     public void Recenter()
     {
-        if (followMenu != null) followMenu.SnapToHead();
+        if (placement != null) placement.SnapToHead();
         Close();
     }
 
