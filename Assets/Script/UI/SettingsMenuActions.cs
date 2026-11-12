@@ -30,4 +30,14 @@ public class SettingsMenuActions : MonoBehaviour
     }
 
     public void BackToMainMenu() => SceneManager.LoadScene(mainMenuScene);
+
+    public void QuitApp()
+    {
+#if UNITY_EDITOR
+        // Application.Quit is ignored in the Editor, so stop Play mode instead.
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

@@ -32,6 +32,7 @@ public class XRModeButton : MonoBehaviour
     private void Refresh()
     {
         if (label != null)
-            label.text = XRModeManager.CurrentMode == XRModeManager.Mode.AR ? "Switch to VR" : "Switch to AR";
+            // label.text = XRModeManager.CurrentMode == XRModeManager.Mode.AR ? "Switch to VR" : "Switch to AR";
+            label.text = "AR / VR";
     }
 }
