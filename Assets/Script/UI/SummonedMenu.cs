@@ -22,6 +22,8 @@ public class SummonedMenu : MonoBehaviour
     [SerializeField] private bool allowDragging = false;
     [Tooltip("Optional bar to drag the menu by. Empty: drag from the Panel background.")]
     [SerializeField] private RectTransform dragHandle;
+    [Tooltip("Optional visible part of the handle to recolor. Empty: recolor the handle itself.")]
+    [SerializeField] private Graphic handleVisual;
 
     [SerializeField] private Color handleColor = new Color(0.81f, 0.88f, 0.9f, 0.8f);       // #CFE0E6, 80%
     [SerializeField] private Color handleActiveColor = new Color(1f, 0.4f, 0.165f, 1f);     // #FF662A
@@ -135,7 +137,7 @@ public class SummonedMenu : MonoBehaviour
         // Only recolor a dedicated handle, never the Panel background.
         if (dragHandle != null)
         {
-            handleGraphic = dragHandle.GetComponent<Graphic>();
+            handleGraphic = handleVisual != null ? handleVisual : dragHandle.GetComponent<Graphic>();
             AddDragEvent(trigger, EventTriggerType.PointerEnter, _ => { handleHovered = true; UpdateHandleColor(); });
             AddDragEvent(trigger, EventTriggerType.PointerExit, _ => { handleHovered = false; UpdateHandleColor(); });
             UpdateHandleColor();

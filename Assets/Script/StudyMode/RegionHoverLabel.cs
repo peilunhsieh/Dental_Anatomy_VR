@@ -39,6 +39,7 @@ public class RegionHoverLabel : MonoBehaviour
     public float slideSpeed = 8f;
 
     private float sideBlend;          // 0 = at the pointer, 1 = beside the tooth
+    private Vector3 lastSidePosition;   // where the open card sat, used while it slides back
     private float sideSign = 1f;      // +1 right of the tooth, -1 left
     private AnatomyRegion sideRegion;
 
@@ -100,9 +101,15 @@ public class RegionHoverLabel : MonoBehaviour
 
         if (sideBlend > 0f)
         {
-            Vector3 side = SidePosition(region, point, cam, t.localScale.x);
+            // Only work out the side spot while the card is open; when closing,
+            // slide back from where it was instead of from the new region's side.
+            if (target > 0f) lastSidePosition = SidePosition(region, point, cam, t.localScale.x);
             float s = sideBlend * sideBlend * (3f - 2f * sideBlend);   // smoothstep
-            position = Vector3.Lerp(position, side, s);
+            position = Vector3.Lerp(position, lastSidePosition, s);
+        }
+        else
+        {
+            sideRegion = null;   // the next opened card picks its side afresh
         }
         t.position = position;
 

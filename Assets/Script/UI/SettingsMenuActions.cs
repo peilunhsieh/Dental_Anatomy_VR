@@ -11,11 +11,19 @@ public class SettingsMenuActions : MonoBehaviour
 
     private PlaceInFrontOfUser placement;
 
+    [Tooltip("Shown only while a tooth is spawned in study mode (always shown in scenes without a StudyModeManager).")]
+    public GameObject structuresSection;
+
+    private StudyModeManager studyManager;
+
     private void OnEnable()
     {
         if (placement == null) placement = FindObjectOfType<PlaceInFrontOfUser>();
         if (recenterButton != null) recenterButton.SetActive(placement != null);
         if (backButton != null) backButton.SetActive(SceneManager.GetActiveScene().name != mainMenuScene);
+        if (studyManager == null) studyManager = FindObjectOfType<StudyModeManager>();
+        if (structuresSection != null)
+            structuresSection.SetActive(studyManager == null || studyManager.CurrentTooth != null);
     }
 
     public void Close()
