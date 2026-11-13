@@ -1,175 +1,213 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
+    private enum Step { ShowTooth, RotateToView, OpenMenu, ShowCusps, SelectCusp, Done }
+
     [Header("Instruction")]
     [SerializeField] private TMP_Text instructionsText;
 
-    [Header("Reveal Step")]
-    [SerializeField] private Toggle coverToggle;
-    [SerializeField] private GameObject coverObject;
-    [SerializeField] private GameObject practiceCube;
+    [Header("Step 1: Show the tooth")]
+    [SerializeField] private Button showToothButton;
+    [FormerlySerializedAs("practiceCube")]
+    [SerializeField] private GameObject practiceObject;
+    [SerializeField] private XRGrabInteractable practiceGrab;
 
-    [Header("Controller Hint")]
-    //[SerializeField] private GameObject controllerModel;
+    [Header("Step 2: Rotate to a view")]
+    [SerializeField] private ToothViewTracker viewTracker;
+    [SerializeField] private DragToRotate rotator;
+    [SerializeField] private ToothView targetView = ToothView.Occlusal;
+
+    [Header("Steps 3-5: Menu and cusps")]
+    [SerializeField] private SummonedMenu settingsMenu;
+    [SerializeField] private AnatomyHotspotManager hotspotManager;
+
+    [Header("Controller Hints")]
     [SerializeField] private GameObject[] indexTriggerHints;
     [SerializeField] private GameObject[] gripHints;
     [SerializeField] private GameObject[] joystickHints;
+    [SerializeField] private GameObject[] menuButtonHints;   // optional
 
     [Header("Controller Guide Fade")]
     [SerializeField] private Renderer[] controllerGuideRenderers;
     [SerializeField] private Material fadedControllerMaterial;
 
-    //[Header("Haptics")]
-    //[SerializeField] private XRBaseController rightController;
-    //[SerializeField] private XRBaseController leftController;
-
-    [SerializeField] private XRGrabInteractable practiceGrab;
+    [Header("End")]
     [SerializeField] private Button enterStudyButton;
+    [SerializeField] private string studyScene = "StudyMode_AR";
 
-    private bool hasGrabbed;
-
-    private bool hasRevealed;
+    private Step step;
 
     private void Awake()
     {
-        coverToggle.onValueChanged.AddListener(OnCoverToggleChanged);
-        practiceGrab.selectEntered.AddListener(OnCubeGrabbed);
-        practiceGrab.selectExited.AddListener(OnCubeReleased);
+        showToothButton.onClick.AddListener(OnShowToothClicked);
         enterStudyButton.onClick.AddListener(EnterStudyMode);
-    }
-    private void Start()
-    {
-        hasRevealed = false;
-        hasGrabbed = false;
-
-        coverToggle.gameObject.SetActive(true);
-        coverToggle.SetIsOnWithoutNotify(false);   // was true: starts unticked now
-        coverToggle.interactable = true;
-
-        if (coverObject != null) coverObject.SetActive(false);
-        practiceCube.SetActive(false);
-
-        // Your fixed demonstration controllers.
-        SetHintGroup(indexTriggerHints, true);
-        SetHintGroup(gripHints, true);
-        SetHintGroup(joystickHints, true);
-
-        enterStudyButton.gameObject.SetActive(false);
-
-        instructionsText.text =
-            "Hold the controllers naturally. Palms up. " +
-            "Your index finger rests on the front trigger, your middle finger " +
-            "rests on the side grip, and your thumb rests on the joystick.\n\n" +
-            "When ready, point at \"Show practice cube\" and press the " +
-            "index trigger to turn it on.";
+        if (practiceGrab != null) practiceGrab.selectEntered.AddListener(OnGrabbed);
+        if (practiceGrab != null)
+        {
+            practiceGrab.selectEntered.AddListener(OnGrabbed);
+            practiceGrab.selectExited.AddListener(OnReleased);
+        }
     }
 
     private void OnDestroy()
     {
-        if (coverToggle != null)
-            coverToggle.onValueChanged.RemoveListener(OnCoverToggleChanged);
+        if (showToothButton != null) showToothButton.onClick.RemoveListener(OnShowToothClicked);
+        if (enterStudyButton != null) enterStudyButton.onClick.RemoveListener(EnterStudyMode);
+        if (practiceGrab != null) practiceGrab.selectEntered.RemoveListener(OnGrabbed);
         if (practiceGrab != null)
         {
-            practiceGrab.selectEntered.RemoveListener(OnCubeGrabbed);
-            practiceGrab.selectExited.RemoveListener(OnCubeReleased);
+            practiceGrab.selectEntered.RemoveListener(OnGrabbed);
+            practiceGrab.selectExited.RemoveListener(OnReleased);
+        }
+    }
+
+    private void Start()
+    {
+        practiceObject.SetActive(false);
+        showToothButton.gameObject.SetActive(true);
+        enterStudyButton.gameObject.SetActive(false);
+
+        // Start with every structure hidden; the user turns cusps on in step 4.
+        if (hotspotManager != null)
+        {
+            hotspotManager.SetCuspFilter(false);
+            hotspotManager.SetRidgeFilter(false);
+            hotspotManager.SetPitFilter(false);
+            hotspotManager.SetFossaFilter(false);
+            hotspotManager.SetGrooveFilter(false);
         }
 
-        if (enterStudyButton != null)
-            enterStudyButton.onClick.RemoveListener(EnterStudyMode);
+        GoTo(Step.ShowTooth);
     }
 
-    private void OnCoverToggleChanged(bool isOn)
+    // Steps that wait on a state rather than an event are checked here.
+    private void Update()
     {
-        // We only advance when the user turns Cover OFF.
-        if (hasRevealed || isOn)
-            return;
+        switch (step)
+        {
+            case Step.RotateToView:
+                    bool released = rotator == null || !rotator.IsMoving;
+                    if (viewTracker != null && viewTracker.CurrentView == targetView && released)
+                    GoTo(Step.OpenMenu);
+                break;
 
-        hasRevealed = true;
+            case Step.OpenMenu:
+                if (settingsMenu != null && settingsMenu.IsOpen) GoTo(Step.ShowCusps);
+                break;
 
-        //if (rightController != null)
-        //    rightController.SendHapticImpulse(0.35f, 0.08f);
+            case Step.ShowCusps:
+                if (hotspotManager != null && hotspotManager.showCusps) GoTo(Step.SelectCusp);
+                break;
 
-        if (hasRevealed) coverObject.SetActive(false);
-        practiceCube.SetActive(true);
+            case Step.SelectCusp:
+                AnatomyRegion selected = hotspotManager != null ? hotspotManager.SelectedRegion : null;
+                if (selected != null && selected.structureType == AnatomyStructureType.Cusp)
+                    GoTo(Step.Done);
+                break;
+        }
+    }
 
-        // Leave the Toggle visible in its OFF state,
-        // but prevent further changes during this tutorial step.
-        //coverToggle.interactable = false;
-        coverToggle.gameObject.SetActive(false);
-
-        SetHintGroup(indexTriggerHints, false);
-        SetHintGroup(gripHints, true);
-        SetHintGroup(joystickHints, false);
+    private void OnShowToothClicked()
+    {
+        if (step != Step.ShowTooth) return;
+        practiceObject.SetActive(true);
+        showToothButton.gameObject.SetActive(false);
         ApplyFadedControllerMaterial();
-
-        instructionsText.text = 
-            "Great! You revealed the practice cube.\n" +
-            "Point your ray at the cube and squeeze the side grip button to select it.";
-
+        GoTo(Step.RotateToView);
     }
-    private void OnCubeGrabbed(SelectEnterEventArgs args)
+
+    private void OnGrabbed(SelectEnterEventArgs args)
     {
-        if (!hasRevealed)
-            return;
-
-        hasGrabbed = true;
-
         if (args.interactorObject is XRBaseControllerInteractor controller)
             controller.SendHapticImpulse(0.35f, 0.08f);
-        instructionsText.text =
-            "Keep holding the grip and rotate your wrist to examine the cube.";
     }
 
-    private void OnCubeReleased(SelectExitEventArgs args)
+    private void OnReleased(SelectExitEventArgs args)
     {
-        if (!hasGrabbed)
-            return;
+        if (step != Step.RotateToView) return;
+        if (viewTracker != null && viewTracker.CurrentView == targetView)
+            GoTo(Step.OpenMenu);
+    }
 
-        instructionsText.text = "Great! You are ready to begin the study.";
+    private void GoTo(Step next)
+    {
+        step = next;
 
-        enterStudyButton.gameObject.SetActive(true);
-        //SetHintGroup(gripHints, false);
-        //SetHintGroup(joystickHints, false);
+        SetHintGroup(indexTriggerHints, next == Step.ShowTooth || next == Step.ShowCusps ||
+                                        next == Step.SelectCusp || next == Step.Done);
+        SetHintGroup(gripHints, next == Step.RotateToView);
+        SetHintGroup(joystickHints, false);
+        SetHintGroup(menuButtonHints, next == Step.OpenMenu);
+
+        switch (next)
+        {
+            case Step.ShowTooth:
+                instructionsText.text =
+                    "Welcome! Hold the controllers naturally: index finger on the front trigger, " +
+                    "middle finger on the side grip, thumb on the joystick.\n\n" +
+                    "Point the ray at \"Show Tooth\" and pull the index trigger to click it.";
+                break;
+
+            case Step.RotateToView:
+                instructionsText.text =
+                    "This is a maxillary right second molar.\n\n" +
+                    "Point at the tooth, then squeeze and hold the side grip. Move the ray to turn it " +
+                    "until the occlusal (biting) surface faces you, then let go.";
+                break;
+
+            case Step.OpenMenu:
+                instructionsText.text =
+                    "Nice, that's the occlusal view!\n\n" +
+                    "Press B on the right controller, or the Menu button on the left controller, " +
+                    "to open the Settings menu.";
+                break;
+
+            case Step.ShowCusps:
+                instructionsText.text =
+                    "This is the Settings menu.\n\n" +
+                    "Under \"Show structures\", point at \"Cusps\" and pull the trigger to turn them on.";
+                break;
+
+            case Step.SelectCusp:
+                instructionsText.text =
+                    "The cusps are now highlighted on the tooth.\n\n" +
+                    "Close the menu with the same button, then point at one of the cusps " +
+                    "and pull the trigger to read about it.";
+                break;
+
+            case Step.Done:
+                instructionsText.text =
+                    "Well done! You've finished the tutorial.\n\n" +
+                    "Click \"Enter Study Mode\" to start studying.";
+                enterStudyButton.gameObject.SetActive(true);
+                break;
+        }
     }
 
     private static void SetHintGroup(GameObject[] hints, bool isActive)
     {
-        if (hints == null)
-            return;
-
+        if (hints == null) return;
         foreach (GameObject hint in hints)
-        {
-            if (hint != null)
-                hint.SetActive(isActive);
-        }
+            if (hint != null) hint.SetActive(isActive);
     }
 
     private void ApplyFadedControllerMaterial()
     {
-        if (fadedControllerMaterial == null || controllerGuideRenderers == null)
-            return;
-
-        foreach (Renderer controllerRenderer in controllerGuideRenderers)
+        if (fadedControllerMaterial == null || controllerGuideRenderers == null) return;
+        foreach (Renderer r in controllerGuideRenderers)
         {
-            if (controllerRenderer == null)
-                continue;
-
-            Material[] materials = controllerRenderer.sharedMaterials;
-            for (int i = 0; i < materials.Length; i++)
-                materials[i] = fadedControllerMaterial;
-
-            controllerRenderer.sharedMaterials = materials;
+            if (r == null) continue;
+            Material[] materials = r.sharedMaterials;
+            for (int i = 0; i < materials.Length; i++) materials[i] = fadedControllerMaterial;
+            r.sharedMaterials = materials;
         }
     }
 
-    private void EnterStudyMode()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StudyMode_AR");
-    }
+    private void EnterStudyMode() => SceneManager.LoadScene(studyScene);
 }

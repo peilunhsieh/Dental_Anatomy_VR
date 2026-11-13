@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class StructureToggles : MonoBehaviour
 {
     public Toggle cusps, ridges, pits, fossae, grooves;
+    [Tooltip("Hide toggles for structure types this scene has no regions of.")]
+    public bool onlyShowPresentTypes = false;
 
     private AnatomyHotspotManager manager;
     private bool bound;
@@ -40,6 +42,15 @@ public class StructureToggles : MonoBehaviour
         Sync(pits, manager.showPits);
         Sync(fossae, manager.showFossae);
         Sync(grooves, manager.showGrooves);
+
+        if (onlyShowPresentTypes)
+        {
+            ShowIfPresent(cusps, AnatomyStructureType.Cusp);
+            ShowIfPresent(ridges, AnatomyStructureType.Ridge);
+            ShowIfPresent(pits, AnatomyStructureType.Pit);
+            ShowIfPresent(fossae, AnatomyStructureType.Fossa);
+            ShowIfPresent(grooves, AnatomyStructureType.Groove);
+        }
     }
 
     private static void Bind(Toggle toggle, UnityAction<bool> setter, AnatomyStructureType type)
@@ -56,5 +67,20 @@ public class StructureToggles : MonoBehaviour
         toggle.SetIsOnWithoutNotify(isOn);
         ToggleButtonStyle style = toggle.GetComponent<ToggleButtonStyle>();
         if (style != null) style.Refresh();
+    }
+
+    private void ShowIfPresent(Toggle toggle, AnatomyStructureType type)
+    {
+        if (toggle == null) return;
+        bool present = false;
+        foreach (AnatomyRegion region in FindObjectsOfType<AnatomyRegion>(true))
+        {
+            if (region.gameObject.scene == manager.gameObject.scene && region.structureType == type)
+            {
+                present = true;
+                break;
+            }
+        }
+        toggle.gameObject.SetActive(present);
     }
 }
