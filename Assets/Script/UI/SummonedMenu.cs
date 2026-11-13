@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 
@@ -19,6 +20,14 @@ public class SummonedMenu : MonoBehaviour
     [Tooltip("Height relative to the head, in metres. Negative is lower.")]
     public float heightOffset = -0.15f;
     [SerializeField] private bool allowDragging = false;
+    [Tooltip("Optional bar to drag the menu by. Empty: drag from the Panel background.")]
+    [SerializeField] private RectTransform dragHandle;
+
+    [SerializeField] private Color handleColor = new Color(0.81f, 0.88f, 0.9f, 0.8f);       // #CFE0E6, 80%
+    [SerializeField] private Color handleActiveColor = new Color(1f, 0.4f, 0.165f, 1f);     // #FF662A
+
+    private Graphic handleGraphic;
+    private bool handleHovered;
 
     private int? dragPointer;
     private Plane dragPlane;
@@ -90,6 +99,8 @@ public class SummonedMenu : MonoBehaviour
     public void Close()
     {
         dragPointer = null;
+        handleHovered = false;
+        UpdateHandleColor();
         StopMenuRayPriority();
         if (content != null) content.SetActive(false);
     }
@@ -114,12 +125,28 @@ public class SummonedMenu : MonoBehaviour
 
     private void EnablePanelDragging()
     {
-        Transform panel = content.transform.Find("Panel");
+        Transform panel = dragHandle != null ? dragHandle : content.transform.Find("Panel");
         if (panel == null) return;
         var trigger = panel.gameObject.AddComponent<EventTrigger>();
         AddDragEvent(trigger, EventTriggerType.BeginDrag, StartDrag);
         AddDragEvent(trigger, EventTriggerType.Drag, MoveDrag);
         AddDragEvent(trigger, EventTriggerType.EndDrag, EndDrag);
+
+        // Only recolor a dedicated handle, never the Panel background.
+        if (dragHandle != null)
+        {
+            handleGraphic = dragHandle.GetComponent<Graphic>();
+            AddDragEvent(trigger, EventTriggerType.PointerEnter, _ => { handleHovered = true; UpdateHandleColor(); });
+            AddDragEvent(trigger, EventTriggerType.PointerExit, _ => { handleHovered = false; UpdateHandleColor(); });
+            UpdateHandleColor();
+        }
+    }
+
+    private void UpdateHandleColor()
+    {
+        if (handleGraphic == null) return;
+        bool active = handleHovered || dragPointer.HasValue;
+        handleGraphic.color = active ? handleActiveColor : handleColor;
     }
 
     private void PrioritizeMenuHit(PointerEventData data, List<RaycastResult> results)
@@ -195,6 +222,8 @@ public class SummonedMenu : MonoBehaviour
         dragPlane = new Plane(panelTransform.forward, panelTransform.position);
         dragPointer = data.pointerId;
         grabOffset = panelTransform.position - dragPlane.ClosestPointOnPlane(data.pointerPressRaycast.worldPosition);
+
+        UpdateHandleColor();
     }
 
     private void MoveDrag(PointerEventData data)
@@ -213,6 +242,7 @@ public class SummonedMenu : MonoBehaviour
     private void EndDrag(PointerEventData data)
     {
         if (dragPointer == data.pointerId) dragPointer = null;
+        UpdateHandleColor();
     }
 
     private bool TryGetDragPoint(PointerEventData data, out Vector3 point)
