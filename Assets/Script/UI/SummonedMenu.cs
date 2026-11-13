@@ -19,6 +19,8 @@ public class SummonedMenu : MonoBehaviour
     public float distance = 0.8f;
     [Tooltip("Height relative to the head, in metres. Negative is lower.")]
     public float heightOffset = -0.15f;
+    [Tooltip("Sideways offset from the centre of view, in metres. Negative is left.")]
+    public float sideOffset = -0.25f;
     [SerializeField] private bool allowDragging = false;
     [Tooltip("Optional bar to drag the menu by. Empty: drag from the Panel background.")]
     [SerializeField] private RectTransform dragHandle;
@@ -39,7 +41,7 @@ public class SummonedMenu : MonoBehaviour
     private readonly Dictionary<XRRayInteractor, LayerMask> suspendedRaycasts =
         new Dictionary<XRRayInteractor, LayerMask>();
 
-    private Vector3 DefaultOffset => new Vector3(0f, heightOffset, distance);
+    private Vector3 DefaultOffset => new Vector3(sideOffset, heightOffset, distance);
 
     public bool IsOpen => content != null && content.activeSelf;
 

@@ -2183,6 +2183,16 @@ PrefabInstance:
       propertyPath: onlyShowPresentTypes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3935659000538950136, guid: 4b99a86b3ac824f54ad0ce91da4fc426,
+        type: 3}
+      propertyPath: sideOffset
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935659000538950136, guid: 4b99a86b3ac824f54ad0ce91da4fc426,
+        type: 3}
+      propertyPath: heightOffset
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5680884837459833546, guid: 4b99a86b3ac824f54ad0ce91da4fc426,
         type: 3}
       propertyPath: m_AnchorMax.y
