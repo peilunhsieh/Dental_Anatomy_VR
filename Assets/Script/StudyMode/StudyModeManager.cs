@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StudyModeManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class StudyModeManager : MonoBehaviour
     public class ToothEntry
     {
         public string toothId;
+        [Tooltip("Shown as the viewer title while this tooth is open, e.g. Maxillary Right First Molar.")]
+        public string displayName;
         public GameObject viewerPrefab;
         public Vector3 localPosition;
         public Vector3 localEulerAngles;
@@ -19,6 +22,10 @@ public class StudyModeManager : MonoBehaviour
     public bool spawnFirstOnStart = true;
 
     [Header("Shared Tooth Viewer")]
+    [Tooltip("Heading above the viewer. Shows the tooth's name while inspecting it.")]
+    public TMP_Text viewerTitle;
+    [Tooltip("Heading shown while choosing a tooth from the arch.")]
+    public string selectionTitle = "Study Mode";
     [Tooltip("The full dental arch shown while choosing a tooth.")]
     public GameObject toothSelectionRoot;
     [Tooltip("The Back to teeth button, shown only while inspecting a tooth.")]
@@ -132,6 +139,17 @@ public class StudyModeManager : MonoBehaviour
             backToTeethButton.SetActive(IsViewingTooth);
         if (toothDetailsPanel != null)
            toothDetailsPanel.SetActive(IsViewingTooth);
+
+        if (viewerTitle != null)
+        {
+            ToothEntry entry = IsViewingTooth ? FindTooth(currentTooth.name) : null;
+            string name = entry != null && !string.IsNullOrWhiteSpace(entry.displayName)
+                ? entry.displayName
+                : selectionTitle;
+            viewerTitle.text = IsViewingTooth && entry != null && string.IsNullOrWhiteSpace(entry.displayName)
+                ? entry.toothId
+                : name;
+        }
     }
 
     private void DestroyCurrentTooth()

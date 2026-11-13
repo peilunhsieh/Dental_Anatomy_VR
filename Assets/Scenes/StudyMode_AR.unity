@@ -2316,9 +2316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9fa96f00c83b448871ddc5ef6ff7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1754309013}
+  manager: {fileID: 0}
   toothId: UR7
-  outline: {fileID: 564670834}
+  outline: {fileID: 0}
 --- !u!114 &564670834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,7 +2326,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564670828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -6378,6 +6378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7970222640763758541, guid: 31df5ebca398c0b4dbc40119d5bf428e,
         type: 3}
+      propertyPath: viewerTitle
+      value: 
+      objectReference: {fileID: 1197994479}
+    - target: {fileID: 7970222640763758541, guid: 31df5ebca398c0b4dbc40119d5bf428e,
+        type: 3}
       propertyPath: toothViewSize.x
       value: 1.9
       objectReference: {fileID: 0}
@@ -6411,6 +6416,11 @@ PrefabInstance:
       propertyPath: toothSelectionRoot
       value: 
       objectReference: {fileID: 974017911}
+    - target: {fileID: 7970222640763758541, guid: 31df5ebca398c0b4dbc40119d5bf428e,
+        type: 3}
+      propertyPath: teeth.Array.data[0].displayName
+      value: Maxillary Right First Molar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

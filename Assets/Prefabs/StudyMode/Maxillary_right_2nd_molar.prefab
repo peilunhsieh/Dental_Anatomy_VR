@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2920f406f20cc0e439f86f2be6974578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structureName: Mesiolingual Cusp
+  structureName: Distolingual Cusp
   description: The smallest of the four functional cusps.
   structureType: 1
   visibleInViews: 16
@@ -1154,8 +1154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2920f406f20cc0e439f86f2be6974578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  structureName: Distolingual Cusp
-  description: The smallest of the four functional cusps.
+  structureName: Mesiolingual Cusp
+  description: The largest cusp, with a rounded, blunt tip. It uniquely has mesial
+    and distal triangular ridges.
   structureType: 1
   visibleInViews: 16
   highlightObject: {fileID: 8510547708567557691}

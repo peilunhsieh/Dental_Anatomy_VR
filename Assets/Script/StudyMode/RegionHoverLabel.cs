@@ -26,9 +26,13 @@ public class RegionHoverLabel : MonoBehaviour
              "Off: face the user but stay level with the world.")]
     public bool alignToView = true;
 
+    public enum CardSide { Auto, Right, Left }
+
     [Header("Expanded Card Placement")]
     [Tooltip("Slide the clicked card beside the tooth so it doesn't cover it.")]
     public bool moveToSideWhenExpanded = true;
+    [Tooltip("Auto: the side that was clicked. Right/Left: always that side.")]
+    public CardSide cardSide = CardSide.Right;
     [Tooltip("The card's background RectTransform, used to measure its size.")]
     public RectTransform card;
     [Tooltip("Space between the tooth and the card at 1 m away; grows with distance so it looks the same.")]
@@ -127,7 +131,9 @@ public class RegionHoverLabel : MonoBehaviour
         if (region != sideRegion)
         {
             sideRegion = region;
-            sideSign = Vector3.Dot(clickPoint - tooth.center, right) >= 0f ? 1f : -1f;
+            sideSign = cardSide == CardSide.Right ? 1f
+                     : cardSide == CardSide.Left ? -1f
+                     : Vector3.Dot(clickPoint - tooth.center, right) >= 0f ? 1f : -1f;
         }
 
         Vector2 cardSize = card != null ? card.rect.size * scale : new Vector2(0.2f, 0.1f);

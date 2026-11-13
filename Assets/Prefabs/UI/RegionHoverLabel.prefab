@@ -543,7 +543,7 @@ MonoBehaviour:
   heightAbovePointer: 0.01
   towardViewer: 0.03
   constantScreenSize: 1
-  scaleAtOneMetre: 0.0005
+  scaleAtOneMetre: 0.0007
   expandedScale: 1.6
   alignToView: 1
   moveToSideWhenExpanded: 1
