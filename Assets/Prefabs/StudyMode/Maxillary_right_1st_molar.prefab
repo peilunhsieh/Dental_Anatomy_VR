@@ -3153,6 +3153,7 @@ GameObject:
   - component: {fileID: 4369424598840333875}
   - component: {fileID: -7337948133437928510}
   - component: {fileID: 1057496098428384377}
+  - component: {fileID: 2271166934469238081}
   m_Layer: 8
   m_Name: Maxillary_right_1st_molar
   m_TagString: Untagged
@@ -3410,6 +3411,91 @@ MonoBehaviour:
   markers: {fileID: 7258491644205354638}
   minFacing: 0.5
   switchMargin: 0.05
+--- !u!114 &2271166934469238081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914032092275200630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170636cb825974bb2bd337d802e8235a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultText: 
+  notes:
+  - view: 1
+    text: "Buccal developmental groove. **UNIQUE: Buccal developmental groove terminates
+      in a characteristic Y-shaped buccal pit. Positioned distal to the midline of
+      the tooth between the MB and DB cusps. \n\nThe MB cusp is larger than the DB
+      cusp.\n\nMesial outline is flat from cervical margin occlusally to contact
+      area then more convex to occlusal margin. Well defined Mesio-occlusal angle.\n\nDistal
+      outline is convex occlusogingivally. The disto-occlusal angle is more rounded
+      than the mesio-occlusal angle.\n\nCervical line is slightly convex apically
+      and may exhibit a sharp dip above the furcation."
+  - view: 2
+    text: "Lingual side is wider and more convex than buccal side. Cusp of Carabelli,
+      ML cusp (completely covers MB) and DL cusp visible. \n\nDistal outline is shorter
+      and the DO line angle is more rounded because DB cusp is smaller.  \n\nCEJ
+      is very slightly convex toward the apex.\n\nA groove extends from occlusal
+      to lingual and forms distolingual groove. Separates occlusal margin into two
+      unequal portions. It is more distal to midline. May terminate into a Lingual
+      pit.  \n\nMesiolingual groove above Cusp of Carabelli\n"
+  - view: 4
+    text: 'Visible cusps include the MB cusp, ML cusp, and the Cusp of Carabelli,
+      a nonfunctional accessory cusp.
+
+
+      Mesiolingual groove located between
+      the ML cusp and the Cusp of Carabelli.
+
+
+      Mesial marginal groove crosses
+      the mesial marginal ridge.
+
+
+      Mesial contact area: round to ovoid; located
+      at the junction of the occlusal and middle thirds.
+
+
+      Cervical margin
+      is shallow and curves toward the occlusal.'
+  - view: 8
+    text: "All four major cusps are visible. The Cusp of Carabelli is often visible
+      from the distal aspect.\n\nCervical width almost the same as occlusal. Slightly
+      tapered to the distal side. \n\nDistal marginal ridge less prominent and dips
+      further cervically, allowing more of occlusal surface to be visible. \n\nDistal
+      Marginal Groove, midway along surface.\n\nCervical line has very little curvature.\n\nDistal
+      contact area is broader buccolingually than the mesial contact and is located
+      in the middle third."
+  - view: 16
+    text: 'ML - Largest
+
+      Two triangular ridges
+
+
+      MB - 2nd largest
+
+      Sharp
+      cusp tip
+
+
+      DB - 3rd largest
+
+      Contributes to oblique ridge
+
+
+      DL
+      - Smallest functional cusp
+
+      Reduced in later molars
+
+
+      Carabelli
+      - Accessory cusp
+
+      Nonfunctional'
 --- !u!1 &5003529259581223810
 GameObject:
   m_ObjectHideFlags: 0
