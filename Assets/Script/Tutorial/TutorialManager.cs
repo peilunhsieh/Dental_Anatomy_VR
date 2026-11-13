@@ -177,7 +177,7 @@ public class TutorialManager : MonoBehaviour
             case Step.SelectCusp:
                 instructionsText.text =
                     "The cusps are now highlighted on the tooth.\n\n" +
-                    "Close the menu with the same button, then point at one of the cusps " +
+                    "Close the menu, or drag it aside by its handle, then point at one of the cusps " +
                     "and pull the trigger to read about it.";
                 break;
 
