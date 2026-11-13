@@ -51,10 +51,13 @@ public class AnatomyHotspotManager : MonoBehaviour
         if (region == null || region == SelectedRegion)
         {
             SelectedRegion = null;
-            return;
         }
-        SelectedRegion = region;
-        selectedLocalPoint = region.transform.InverseTransformPoint(worldPoint);
+        else
+        {
+            SelectedRegion = region;
+            selectedLocalPoint = region.transform.InverseTransformPoint(worldPoint);
+        }
+        RefreshInfo();
     }
 
     // Any trigger press closes a pinned card...
@@ -64,6 +67,7 @@ public class AnatomyHotspotManager : MonoBehaviour
         SelectedRegion = null;
         closedByPress = true;
         ignoreClicksUntilFrame = int.MaxValue;   // until the trigger is released
+        RefreshInfo();
     }
 
     // ...and the click that finishes on release must not reopen one.
@@ -212,7 +216,8 @@ public class AnatomyHotspotManager : MonoBehaviour
 
     internal void ApplyRegionPresentation(AnatomyRegion region)
     {
-        AnatomyRegion focused = isActiveAndEnabled ? currentRegion : null;
+        AnatomyRegion target = SelectedRegion != null ? SelectedRegion : currentRegion;
+        AnatomyRegion focused = isActiveAndEnabled ? target : null;
         float opacity = focused == null ? hintOpacity : unselectedOpacity;
         region.SetFocusPresentation(focused, opacity, true);
     }

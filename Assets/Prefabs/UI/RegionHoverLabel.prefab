@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Body
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: d6914bb2821841abaa014790d83bfc8f, type: 2}
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: d6914bb2821841abaa014790d83bfc8f, type: 2}
@@ -542,7 +542,12 @@ MonoBehaviour:
   body: {fileID: 2399615675231511149}
   heightAbovePointer: 0.01
   towardViewer: 0.03
-  constantScreenSize: 0
+  constantScreenSize: 1
   scaleAtOneMetre: 0.0005
   expandedScale: 1.6
   alignToView: 1
+  moveToSideWhenExpanded: 1
+  card: {fileID: 6746086223575687173}
+  sideGap: 0.03
+  sideHeightOffset: 0
+  slideSpeed: 8

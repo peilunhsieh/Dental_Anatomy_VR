@@ -1009,7 +1009,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Mesiobuccal Cusp
-  description: 
+  description: A relatively sharp cusp and the second largest. It has four cusp ridges
+    and four inclined planes.
   structureType: 1
   visibleInViews: 16
   highlightObject: {fileID: 3847140517093979141}
@@ -1055,7 +1056,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Distobuccal Cusp
-  description: 
+  description: The sharpest and third-largest cusp. Its triangular ridge contributes
+    to the oblique ridge.
   structureType: 1
   visibleInViews: 16
   highlightObject: {fileID: 5179813974525250603}
@@ -1107,7 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Mesiolingual Cusp
-  description: 
+  description: The smallest of the four functional cusps.
   structureType: 1
   visibleInViews: 16
   highlightObject: {fileID: 7084497351455837042}
@@ -1153,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structureName: Distolingual Cusp
-  description: 
+  description: The smallest of the four functional cusps.
   structureType: 1
   visibleInViews: 16
   highlightObject: {fileID: 8510547708567557691}

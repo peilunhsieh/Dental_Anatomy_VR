@@ -26,6 +26,22 @@ public class RegionHoverLabel : MonoBehaviour
              "Off: face the user but stay level with the world.")]
     public bool alignToView = true;
 
+    [Header("Expanded Card Placement")]
+    [Tooltip("Slide the clicked card beside the tooth so it doesn't cover it.")]
+    public bool moveToSideWhenExpanded = true;
+    [Tooltip("The card's background RectTransform, used to measure its size.")]
+    public RectTransform card;
+    [Tooltip("Space between the tooth and the card at 1 m away; grows with distance so it looks the same.")]
+    public float sideGap = 0.015f;
+    [Tooltip("Move the card up (+) or down (-) from the tooth's middle, at 1 m away.")]
+    public float sideHeightOffset = 0f;
+    [Tooltip("How quickly the card slides. Higher is faster.")]
+    public float slideSpeed = 8f;
+
+    private float sideBlend;          // 0 = at the pointer, 1 = beside the tooth
+    private float sideSign = 1f;      // +1 right of the tooth, -1 left
+    private AnatomyRegion sideRegion;
+
     private XRRayInteractor[] rays;
     private AnatomyRegion shownRegion;
 
@@ -67,24 +83,86 @@ public class RegionHoverLabel : MonoBehaviour
         Vector3 position = point + Vector3.up * heightAbovePointer + toViewer * towardViewer;
 
         Transform t = content.transform;
-        t.position = position;
         t.rotation = alignToView
             ? cam.transform.rotation
             : Quaternion.LookRotation(position - cam.transform.position, Vector3.up);
 
         if (constantScreenSize)
         {
-            float distance = Vector3.Distance(cam.transform.position, position);
-            float size = scaleAtOneMetre * distance * (expanded ? expandedScale : 1f);
-            t.localScale = Vector3.one * size;
+            float distance = Vector3.Distance(cam.transform.position, point);
+            t.localScale = Vector3.one * (scaleAtOneMetre * distance * (expanded ? expandedScale : 1f));
         }
+
+        // Ease between the pointer position and the spot beside the tooth.
+        float target = expanded && moveToSideWhenExpanded ? 1f : 0f;
+        sideBlend = Mathf.Lerp(sideBlend, target, 1f - Mathf.Exp(-slideSpeed * Time.deltaTime));
+        if (Mathf.Abs(sideBlend - target) < 0.001f) sideBlend = target;
+
+        if (sideBlend > 0f)
+        {
+            Vector3 side = SidePosition(region, point, cam, t.localScale.x);
+            float s = sideBlend * sideBlend * (3f - 2f * sideBlend);   // smoothstep
+            position = Vector3.Lerp(position, side, s);
+        }
+        t.position = position;
 
         if (!content.activeSelf) content.SetActive(true);
     }
 
+    // Beside the tooth on the side that was clicked, vertically centred on the tooth.
+    private Vector3 SidePosition(AnatomyRegion region, Vector3 clickPoint, Camera cam, float scale)
+    {
+        Bounds tooth = ToothBounds(region);
+        Vector3 right = cam.transform.right;
+        Vector3 up = cam.transform.up;
+
+        // Pick the side once per clicked region, so the card doesn't flip while the tooth turns.
+        if (region != sideRegion)
+        {
+            sideRegion = region;
+            sideSign = Vector3.Dot(clickPoint - tooth.center, right) >= 0f ? 1f : -1f;
+        }
+
+        Vector2 cardSize = card != null ? card.rect.size * scale : new Vector2(0.2f, 0.1f);
+        float toothHalf = HalfExtentAlong(tooth, right);
+        Vector3 toViewer = (cam.transform.position - tooth.center).normalized;
+        float distance = Vector3.Distance(cam.transform.position, tooth.center);
+        float gap = sideGap * distance;
+        float height = sideHeightOffset * distance;
+
+        // The card's pivot is its bottom centre, so lower it by half its height to centre it.
+        return tooth.center
+            + right * sideSign * (toothHalf + gap + cardSize.x * 0.5f)
+            + up * (height - cardSize.y * 0.5f)
+            + toViewer * towardViewer;
+    }
+
+    // Bounds of the whole tooth the region belongs to (the grabbable root), not just the region.
+    private static Bounds ToothBounds(AnatomyRegion region)
+    {
+        Component root = region.GetComponentInParent<XRGrabInteractable>();
+        Transform rootTransform = root != null ? root.transform : region.transform;
+
+        bool found = false;
+        Bounds bounds = new Bounds(rootTransform.position, Vector3.zero);
+        foreach (Renderer r in rootTransform.GetComponentsInChildren<Renderer>())
+        {
+            if (!r.enabled) continue;
+            if (!found) { bounds = r.bounds; found = true; }
+            else bounds.Encapsulate(r.bounds);
+        }
+        return bounds;
+    }
+
+    // Half the size of the bounds measured along a direction.
+    private static float HalfExtentAlong(Bounds b, Vector3 dir) =>
+        Mathf.Abs(dir.x) * b.extents.x + Mathf.Abs(dir.y) * b.extents.y + Mathf.Abs(dir.z) * b.extents.z;
+
     private void Hide()
     {
         shownRegion = null;
+        sideRegion = null;
+        sideBlend = 0f;
         if (content != null && content.activeSelf) content.SetActive(false);
     }
 
