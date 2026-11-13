@@ -1213,7 +1213,7 @@ PrefabInstance:
     - target: {fileID: 4914032092275200630, guid: 13d4821b6076e0a4981c3354aa89a204,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7899680276563742438, guid: 13d4821b6076e0a4981c3354aa89a204,
         type: 3}
@@ -1276,6 +1276,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 807793593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &807793595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1500440670284759030, guid: 13d4821b6076e0a4981c3354aa89a204,
+    type: 3}
+  m_PrefabInstance: {fileID: 807793593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807793596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &807793596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4914032092275200630, guid: 13d4821b6076e0a4981c3354aa89a204,
+    type: 3}
+  m_PrefabInstance: {fileID: 807793593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &828120425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1341,7 @@ MonoBehaviour:
   instructionsText: {fileID: 1362527276}
   coverToggle: {fileID: 1498290492}
   coverObject: {fileID: 381624255}
-  practiceCube: {fileID: 2119992413}
+  practiceCube: {fileID: 807793596}
   indexTriggerHints:
   - {fileID: 1928983501}
   gripHints:
@@ -1337,7 +1355,7 @@ MonoBehaviour:
   - {fileID: 1657785071}
   fadedControllerMaterial: {fileID: 2100000, guid: 3d61174b8cbd59747a501d41269e1472,
     type: 2}
-  practiceGrab: {fileID: 2119992416}
+  practiceGrab: {fileID: 807793595}
   enterStudyButton: {fileID: 188458626}
 --- !u!1 &831033645
 GameObject:
@@ -4260,6 +4278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PracticeCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4dff110aaff041e4c86fee9bf860ae65,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
